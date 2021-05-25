@@ -11,6 +11,7 @@ from mlflow.tracking import MlflowClient
 from memoized_property import memoized_property
 from TaxiFareModel.data import get_data, clean_data
 from sklearn.model_selection import train_test_split
+import joblib
 
 
 class Trainer():
@@ -59,7 +60,11 @@ class Trainer():
         self.mlflow_log_metric("rmse", rmse)
         return rmse
     
-    
+    def save_model(self):
+        """ Save the trained model into a model.joblib file """
+        joblib.dump(self.pipeline, 'model.joblib')
+        
+
     @memoized_property
     def mlflow_client(self):
         mlflow.set_tracking_uri("https://mlflow.lewagon.co/")
@@ -89,6 +94,11 @@ if __name__ == "__main__":
     X = df.drop(columns="fare_amount")
     y = df['fare_amount']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-    trainer = Trainer(X, y)
+    trainer = Trainer(X_train, y_train)
     trainer.run()
     trainer.evaluate(X_test, y_test)
+    trainer.save_model()
+    
+    # final_trainer = Trainer(X, y) # train on everything
+    # y_pred = final_trainer.run().predict(X_test)
+    
