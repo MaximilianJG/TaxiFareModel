@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/maximilianglasmacher/code/MaximilianJG/TaxiFareModel/mlruns/1/efa81feec2494f0ea6df643a42fe16f1/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: efa81feec2494f0ea6df643a42fe16f1
+run_uuid: efa81feec2494f0ea6df643a42fe16f1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1621950262307
+status: 1
+tags: []
+user_id: unknown
